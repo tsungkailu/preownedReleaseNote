@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  範本說明（建立新版本時請依此操作，完成後可刪除本段註解）
+  ============================================================
+  1. 複製本檔，改名為 YYYYMMDD_preowned.html（例：20260722_preowned.html）
+  2. 取代下列佔位內容：
+     - {{VERSION}}      版本號，例如 PRE1.142
+     - {{DATE}}         發布日期，例如 2026-07-22
+     - {{TOTAL_COUNT}}  本版項目總數（新功能 + 功能修正 加總）
+  3. 在「新功能」「功能修正與優化」兩個區塊內，
+     依需要複製 <div class="update-card">…</div> 區塊增減項目，
+     編號統一用兩位數阿拉伯數字「01、02…」整版從頭連續編號，
+     不分區塊重新起算（與本系統既有慣例一致）。
+  4. 若項目沒有對應的操作連結，可整段刪除 <div class="card-actions">…</div>。
+  5. 若連結色塊想跟其他連結做區分（例如外部工具、Chrome套件），
+     在 <a class="card-link"> 後面加一個 class="purple"。
+  6. 完成後，記得同步在 index.html 的表格最上方新增一列，
+     並把版本內容摘要、項目總數一併更新。
+  ============================================================
+-->
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<title>中古車上版通知 {{VERSION}}</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">RELEASE NOTICE</div>
+    <h1>中古車上版通知</h1>
+    <div class="version-line">{{VERSION}} &nbsp;|&nbsp; {{DATE}}</div>
+  </div>
+
+  <div class="subbar">本次版本共包含 <b>{{TOTAL_COUNT}}</b> 項更新，涵蓋新功能開發、流程自動化及介面修正。</div>
+
+  <div class="content">
+
+    <div class="section-title">新功能</div>
+
+    <div class="card-list">
+    <!-- 複製以下整塊 update-card 來新增一個新功能項目（用 card-list 包住，區塊會自動白／淡灰交錯）-->
+    <div class="update-card">
+      <h3>01　項目標題</h3>
+      <p>項目說明文字。</p>
+      <div class="card-actions">
+        <a class="card-link" href="https://example.com" target="_blank">按鈕文字</a>
+      </div>
+    </div>
+    </div>
+
+    <div class="section-title with-divider">功能修正與優化</div>
+
+    <div class="card-list">
+    <!-- 複製以下整塊 update-card 來新增一個修正項目（沒有連結可整段刪掉 card-actions） -->
+    <div class="update-card alt">
+      <h3>02　項目標題</h3>
+      <p>項目說明文字。</p>
+    </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    CARPLUS PREOWNED Project<br>
+    如有問題請洽詢 REED 6006
+    <div><a class="back-link" href="index.html">← 返回更新歷程目錄</a></div>
+  </div>
+
+</div>
+
+</body>
+</html>

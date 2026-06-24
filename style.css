@@ -1,0 +1,204 @@
+/* =========================================================
+   CARPLUS PREOWNED · 更新歷程系統 共用樣式
+   供 index.html 與每版更新明細頁（YYYYMMDD_preowned.html）共用
+   ========================================================= */
+
+:root{
+  --navy:#1A3C5E;
+  --navy-light:#4A7FA5;
+  --purple:#7B1FA2;
+  --bg:whitesmoke;
+  --panel-bg:#EEF4FA;
+  --panel-border:#D8E8F4;
+  --border:#E0E0E0;
+  --border-light:#EEEEEE;
+  --border-faint:#E8E8E8;
+  --row-hover:#FAFCFE;
+  --footer-bg:#F9F9F9;
+  --footer-border:#E8E8E8;
+  --text:#222;
+  --text-muted:#444;
+  --text-label:#5A6B7A;
+  --font-zh:'微軟正黑體','Microsoft JhengHei',sans-serif;
+  --font-en:'Times New Roman',serif;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  font-family:var(--font-zh);
+  background-color:var(--bg);
+  margin:0;
+  padding:24px 12px;
+  color:var(--text);
+}
+
+.wrap{
+  max-width:720px;
+  margin:0 auto;
+  background:white;
+  border:1px solid var(--border);
+}
+
+/* ---- 頁首（兩種頁面共用） ---- */
+.header{
+  background:var(--navy);
+  color:white;
+  padding:21px 24px;
+}
+.header .eyebrow{
+  font-family:var(--font-en);
+  font-size:12px;
+  letter-spacing:1px;
+  opacity:.85;
+}
+.header h1{
+  margin:6px 0 0 0;
+  font-size:20px;
+  font-weight:bold;
+}
+.header .version-line{
+  font-family:var(--font-en);
+  font-size:13px;
+  margin-top:8px;
+}
+
+/* ---- 提示橫條（目錄頁/版本說明共用） ---- */
+.subbar{
+  background:var(--panel-bg);
+  border-bottom:1px solid var(--panel-border);
+  padding:10.5px 24px;
+  font-size:14px;
+  color:#333;
+}
+
+/* ---- 目錄頁：歷史表格 ---- */
+table.history{
+  width:100%;
+  border-collapse:collapse;
+  margin:0;
+}
+table.history th{
+  text-align:left;
+  font-size:12.5px;
+  color:var(--text-label);
+  background:#F5F8FB;
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+  font-weight:bold;
+  white-space:nowrap;
+}
+table.history td{
+  padding:14px 14px;
+  border-bottom:1px solid var(--border-light);
+  vertical-align:top;
+  font-size:13.5px;
+  line-height:1.6;
+}
+table.history tr:last-child td{
+  border-bottom:none;
+}
+table.history tr:hover td{
+  background:var(--row-hover);
+}
+.col-date{
+  width:90px;
+  color:var(--navy);
+  font-weight:bold;
+  white-space:nowrap;
+}
+.col-version{
+  width:130px;
+  white-space:nowrap;
+}
+.col-version a{
+  display:inline-block;
+  color:var(--navy);
+  font-weight:bold;
+  text-decoration:none;
+  border-bottom:1px solid var(--navy);
+}
+.col-version a:hover{
+  color:var(--navy-light);
+  border-bottom-color:var(--navy-light);
+}
+.col-summary{
+  color:var(--text-muted);
+}
+
+/* ---- 更新明細頁：內容區 ---- */
+.content{
+  padding:18px 24px;
+}
+.section-title{
+  font-size:14px;
+  font-weight:bold;
+  padding-bottom:18px;
+}
+.section-title.with-divider{
+  border-top:1px solid var(--border-light);
+  padding-top:20px;
+  margin-top:6px;
+}
+
+.update-card{
+  border:1px solid var(--border-faint);
+  border-left:3px solid var(--navy);
+  padding:12px 13.5px;
+  margin-bottom:10px;
+  background:white;
+}
+.card-list .update-card:nth-of-type(even){
+  background:#F7F7F7;
+}
+.update-card.alt{
+  border-left-color:var(--navy-light);
+}
+.update-card h3{
+  margin:0 0 8px 0;
+  font-size:17px;
+  font-weight:bold;
+}
+.update-card p{
+  margin:0;
+  font-size:14px;
+  line-height:1.7;
+  color:#5a5a5a;
+}
+.update-card .card-actions{
+  margin-top:15px;
+  text-align:right;
+}
+.card-link{
+  display:inline-block;
+  text-decoration:none;
+  font-size:12.5px;
+  color:white;
+  background:var(--navy);
+  padding:6px 13px;
+  border-radius:4px;
+  margin-left:8px;
+}
+.card-link.purple{
+  background:var(--purple);
+}
+
+/* ---- 頁尾（兩種頁面共用） ---- */
+.footer{
+  background:var(--footer-bg);
+  border-top:1px solid var(--footer-border);
+  padding:13.5px 24px;
+  font-size:12px;
+  color:black;
+  text-align:center;
+}
+.footer .back-link{
+  display:inline-block;
+  margin-top:12px;
+  text-decoration:none;
+  font-size:13px;
+  color:white;
+  background:var(--navy);
+  padding:7px 16px;
+  border-radius:4px;
+}
