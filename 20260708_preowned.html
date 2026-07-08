@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<title>中古車上版通知 PRE1.141</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">RELEASE NOTICE</div>
+    <h1>中古車上版通知</h1>
+    <div class="version-line">PRE1.141 &nbsp;|&nbsp; 2026-07-08</div>
+  </div>
+
+  <div class="subbar">本次版本共包含 <b>12</b> 項更新，涵蓋新功能開發、流程自動化及介面修正。</div>
+
+  <div class="content">
+
+    <div class="section-title">新功能</div>
+
+    <div class="card-list">
+
+    <div class="update-card">
+      <h3>01　中古車種與車型資料庫管理</h3>
+      <p>新增車型管理介面，由營業單位及所長，統一設定中古車車型資料（含車型明細、車種、車門、輪胎數、產地、變速箱、傳動方式等），並將最新中古車型資料同步回 CRS。中古車匯入或同步車籍時，自動帶入對應車型代碼的車型資料。</p>
+      <div class="card-actions">
+        <a class="card-link" href="https://auto-cms.car-plus.com.tw/setting/carModel" target="_blank">前往車型管理</a>
+      </div>
+    </div>
+
+    <div class="update-card">
+      <h3>02　合成車圖增加「自訂指令」功能</h3>
+      <p>當車圖首次合成結果不理想時（例如車色因光線被AI誤判），提供「調整指令重新生成」功能，能自由調整目前合成指令，客製化重新合成。</p>
+      <div class="card-actions">
+        <a class="card-link" href="https://auto-cms.car-plus.com.tw/cars" target="_blank">前往車籍管理</a>
+      </div>
+    </div>
+
+    <div class="update-card">
+      <h3>03　法人客戶可重新帶入工商登記資料</h3>
+      <p>法人客戶明細頁新增「同步工商登記名稱」及「同步工商登記地址」按鈕，可即時重新取回最新工商資料並儲存，解決公司登記資訊異動後無法更新的問題。</p>
+      <div class="card-actions">
+        <a class="card-link" href="https://auto-cms.car-plus.com.tw/customer/legal" target="_blank">前往法人客戶管理</a>
+      </div>
+    </div>
+
+    <div class="update-card">
+      <h3>04　官網進階搜尋新增「SAA鑑定」篩選</h3>
+      <p>中古車官網進階搜尋條件新增「SAA鑑定」選項，消費者可直接篩選具SAA認證的車輛。</p>
+      <div class="card-actions">
+        <a class="card-link purple" href="https://www.car-plus.com.tw/preowned/list" target="_blank">前往車輛搜尋</a>
+      </div>
+    </div>
+
+    <div class="update-card">
+      <h3>05　官網關鍵字搜尋納入自訂標籤</h3>
+      <p>中古車官網關鍵字搜尋時，搜尋結果同步納入車輛自訂標籤內容，提升搜尋準確度與車輛曝光率。</p>
+      <div class="card-actions">
+        <a class="card-link purple" href="https://www.car-plus.com.tw/preowned/list" target="_blank">前往車輛搜尋</a>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="section-title with-divider">功能修正與優化</div>
+
+    <div class="card-list">
+
+    <div class="update-card alt">
+      <h3>06　發票開立通知信增加營業所所長，並改為HTML格式寄送</h3>
+      <p>中古車發票開立通知信收件人新增營業所所長，並改以HTML格式美化信件外觀，同步附帶訂單連結，方便追蹤處理。</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>07　待開立發票通知信新增買受人名稱並調整文案</h3>
+      <p>每日待開立發票提醒信，新增「買受人名稱」欄位，並調整相關提示文案，讓收件者可更快掌握訂單資訊。</p>
+    </div>
+
+    <div class="update-card">
+      <h3>08　調度車輛成交期滿後未自動解除問題修正</h3>
+      <p>修正調度車輛成交後，排程異常停止導致期滿未自動解除成交狀態的問題，避免需要人工介入調整。</p>
+    </div>
+
+    <div class="update-card">
+      <h3>09　開立發票申請優化</h3>
+      <p>申請開立發票 popup 新增「新店總部自取」為車證取件地點選項；同步調整貸款撥款金額欄位標題，以及金額不足時的錯誤提示文案，說明更清楚。</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>10　交車之訂單，無法取得簽核資訊之問題修正</h3>
+      <p>修正訂單狀態為「交車」時，系統無法取得對應簽核流程資訊的問題，確保交車後相關作業可正常進行。</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>11　出售訂單任一狀態皆可下載「出售文件」</h3>
+      <p>出售訂單不再限定特定狀態才能取得出售文件，任一狀態（含暫存）均提供文件下載入口；若文件產製失敗，系統顯示對應錯誤訊息。</p>
+    </div>
+
+    <div class="update-card">
+      <h3>12　官網車輛詳情頁，無「車輛故事」資料時隱藏「車款介紹」區域</h3>
+      <p>車輛詳情頁於無車輛故事資料時，自動隱藏「車款介紹」區塊，避免顯示空白區域影響頁面閱讀體驗。</p>
+      <div class="card-actions">
+        <a class="card-link purple" href="https://www.car-plus.com.tw/preowned/detail/21221" target="_blank">有車輛故事範例</a>
+        <a class="card-link purple" href="https://www.car-plus.com.tw/preowned/detail/21254" target="_blank">無車輛故事範例</a>
+      </div>
+    </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    CARPLUS PREOWNED Project<br>
+    如有問題請洽詢 REED 6006
+    <div><a class="back-link" href="index.html">← 返回更新歷程目錄</a></div>
+  </div>
+
+</div>
+
+</body>
+</html>
