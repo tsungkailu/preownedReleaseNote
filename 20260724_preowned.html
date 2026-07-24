@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<title>中古車上版通知 PRE1.142.0</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">RELEASE NOTICE</div>
+    <h1>中古車上版通知</h1>
+    <div class="version-line">PRE1.142.0 &nbsp;|&nbsp; 2026-07-24</div>
+  </div>
+
+  <div class="subbar">本次版本共包含 <b>12</b> 項更新，涵蓋新功能開發、流程自動化及介面修正。</div>
+
+  <div class="content">
+
+    <div class="section-title">新功能</div>
+
+    <div class="card-list">
+
+      <div class="update-card">
+        <h3>01　付款方式新增「現金」及「現金轉匯」流程</h3>
+        <p>業代可先建立現金收款紀錄。待現金匯入銀行後，再至系統操作「現金轉匯」，將匯款資料與現金收款紀錄互相勾稽，確保「收受現金已全額轉為匯款，並使用於車款」之原則。有收受「現金」之訂單，必須至系統完成「現金轉匯」，始可申請開立發票。</p>
+      </div>
+
+      <div class="update-card">
+        <h3>02　付款資訊管理介面</h3>
+        <p>提供管理出售訂單付款方式之獨立頁面，可於出售訂單 &gt; 操作直接進入，並提供操作規則供使用者隨時查詢。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/performance/sales" target="_blank">前往出售管理</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>03　發票／貸款作業管理</h3>
+        <p>業績管理新增「發票／貸款作業管理」功能，整合訂單、發票、貸款、牌照狀態、車證寄送與牌照繳銷地點等資訊，提供營業課進行發票申請狀態查詢、發票申請退回（可退回後重新申請）、發票開立、貸款入款作業、上傳繳銷單等作業。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.beta.car-plus.cool/performance/invoice?invoiceStatus=APPLYING,VALID" target="_blank">前往發票／貸款作業管理</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>04　中古車上架條件，單一項目逐項檢核</h3>
+        <p>點擊「上架條件」時，系統自動逐項檢核車輛不符合上架的原因，並顯示結果，協助業代快速確認無法上架原因及應補件項目。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/cars/21589" target="_blank">前往車籍管理>車輛明細</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>05　訂單「交車」狀態可進行貸款入款</h3>
+        <p>中古車出售訂單狀態為「交車」時，也可操作「貸款入款」，不再限於「出售核准」狀態。</p>
+      </div>
+
+    </div>
+
+    <div class="section-title with-divider">功能修正與優化</div>
+
+    <div class="card-list">
+
+      <div class="update-card alt">
+        <h3>06　申請發票功能優化</h3>
+        <p>申請開立發票時，系統增加檢核：(1) 付款方式為現金時，須先完成「現金轉匯」；(2) 若匯款人與買受人不同，須上傳代付車款同意書。此外，當牌照狀態為繳銷時，不用再填寫牌照繳銷地點。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>07　車型動力名稱，與 CRS 對齊</h3>
+        <p>車型動力欄位改採與 CRS 一致的中文名稱，如汽油、電動，修正原先因對照不一致導致動力資料顯示異常的問題。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>08　車籍管理，可刪除車輛鑑定書</h3>
+        <p>車籍管理 &gt; 鑑定養護，可刪除過期或無效之車輛鑑定書。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>09　交車資訊：行照及客戶簽名圖片可旋轉</h3>
+        <p>已交車訂單的交車資訊頁，行照圖片與客戶簽名圖片新增旋轉功能，方便業代閱讀直式拍攝的影像。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>10　後台錯誤訊息恢復自動關閉</h3>
+        <p>中古車後台的錯誤提示訊息，恢復自動關閉機制，避免換頁後舊訊息殘留，造成使用者誤判當前頁面發生錯誤。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>11　車型輪胎資料改參考 CRS carcode</h3>
+        <p>同步車籍資料時，輪胎資料改為參考 CRS carcode，不再由同步程序覆寫，確保資料一致性。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>12　車證寄送新增「新店總部」選項</h3>
+        <p>開立發票流程中，車證寄送地點新增獨立的「新店總部」選項，並移除原先混用的「新店自取」設定。</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    CARPLUS PREOWNED Project<br>
+    如有問題請洽詢 REED 6006
+    <div><a class="back-link" href="index.html">← 返回更新歷程目錄</a></div>
+  </div>
+
+</div>
+
+</body>
+</html>
