@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<title>中古車上版通知 PRE1.143</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="eyebrow">RELEASE NOTICE</div>
+    <h1>中古車上版通知</h1>
+    <div class="version-line">PRE1.143 &nbsp;|&nbsp; 2026-08-05</div>
+  </div>
+
+  <div class="subbar">本次版本共包含 <b>14</b> 項更新，涵蓋新功能開發、流程自動化及介面修正。</div>
+
+  <div class="content">
+    <div class="section-title">新功能</div>
+    <div class="card-list">
+
+      <div class="update-card">
+        <h3>01 出售訂單，可兌換中古車推薦碼/生日碼</h3>
+        <p>新增中古車優惠碼機制，可於出售訂單兌換優惠碼，系統將自動檢核兌換碼有效性，成功兌換後，系統自動計算折扣後發票金額。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/performance/sales" target="_blank">前往出售管理</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>02 出售管理 &gt; 交車資訊頁，新增客戶新領牌車號與繳銷單</h3>
+        <p>若神馬交車時未輸入客戶新領牌，可於後台交車資訊補輸入。若原車牌需要上傳繳銷單，可於同功能上傳。此外，豐富交車資訊頁資訊，增加訂單資訊、保固資訊。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/performance/sales" target="_blank">前往出售管理</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>03 交車保固資訊，自動拋轉至道路救援系統</h3>
+        <p>每日 21:00 排程，將中古車已交車、有提供保固期限、並具有客戶新車牌之資訊，拋轉傳送至道路救援系統，確保售後道路救援系統可查詢到中古車保固資訊。</p>
+      </div>
+
+      <div class="update-card">
+        <h3>04 報表系統 &gt; 交修功能，串接中古車出售保固資訊</h3>
+        <p>為解決中古出售車輛無法建立交修單之問題。調整報表系統 &gt; 交修功能，串接中古車出售訂單資料，使維修端可直接查詢中古車出售車輛的保固資訊。</p>
+        <div class="card-actions">
+          <a class="card-link purple" href="http://lsweb2.car-plus.com.tw/PortalCSVS/DesktopDefault.aspx?tabid=21&Path=Repair&Name=RepairFile" target="_blank">前往交修建檔</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>05 建立／更新中古車客戶後，同步至 SAP 客戶主檔</h3>
+        <p>建立或更新中古車客戶資料（自然人及法人）時，同步將客戶資料傳送至 SAP 客戶主檔，確保財務資料一致性。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/customer/natural" target="_blank">前往客戶管理</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>06 神馬盤點功能優化：進度條、異常原因、車輛入庫詳情</h3>
+        <p>APP 盤點主檔新增進度條顯示，車卡清單即時顯示異常原因與備註，點擊可查看車輛入庫詳情（含外部照片）；盤點期間若有車輛入庫或出庫，系統自動同步清單並推播通知負責人員。</p>
+        <div class="card-actions">
+          <a class="card-link purple" href="https://apps.apple.com/tw/app/%E7%A5%9E%E9%A6%AC%E7%B6%AD%E9%81%8B/id6443620327" target="_blank">下載神馬維運 iOS</a>
+          <a class="card-link purple" href="https://play.google.com/store/apps/details?id=com.carplus.ops2go&hl=zh_TW&pli=1" target="_blank">下載神馬維運 Android</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>07 CRS 完成實車出入庫時，同步調整神馬調度車籍狀態</h3>
+        <p>為解決車輛還車後無法進入調度系統之問題。於 CRS 完成中古車實車入庫／出庫作業後，若車輛是於中古車倉庫出入庫，則自動對接調度系統，更新車輛在調度系統之庫存狀態。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://lrental.car-plus.com.tw/crs/stockOperation" target="_blank">前往 CRS 實車出入庫</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>08 舊系統行動收銀台，更新車體等級後同步 CRS</h3>
+        <p>為解決車體等級變更後未同步 CRS 的問題，行動收銀台完成車體等級更新後，自動同步更新 CRS 端車體等級。</p>
+      </div>
+
+    </div>
+
+    <div class="section-title with-divider">功能修正與優化</div>
+    <div class="card-list">
+
+      <div class="update-card alt">
+        <h3>09 中古車官網，未登入者預約，直接進入填寫預約資訊頁</h3>
+        <p>原先未登入者點擊預約賞車，會跳出登入提示，可能造成使用者終止流程。移除登入提示流程，讓使用者點擊預約後，立刻進入預約資訊頁。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>10 出售報表增加優惠碼相關欄位</h3>
+        <p>出售訂單報表，新增買方生日、成交車價（不含配件）、折扣金額、已兌換推薦碼、已兌換生日碼欄位。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/performance/sales" target="_blank">前往出售管理</a>
+        </div>
+      </div>
+
+      <div class="update-card alt">
+        <h3>11 出售管理清單顯示客戶車牌，並可用客戶新領車牌查詢訂單</h3>
+        <p>出售訂單，可輸入客戶新領車牌查詢；並於清單顯示出售車牌與客戶新領車牌。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/performance/sales" target="_blank">前往出售管理</a>
+        </div>
+      </div>
+
+      <div class="update-card alt">
+        <h3>12 出售訂單銷售專案名稱顯示異常修正</h3>
+        <p>修正出售訂單中銷售專案名稱未正常顯示的問題。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/performance/sales" target="_blank">前往出售管理</a>
+        </div>
+      </div>
+
+      <div class="update-card alt">
+        <h3>13 CRS 長照車輛採購契約年限延長為 8 年</h3>
+        <p>營業用車採購中，長照車輛的契約年限由原本固定 5 年延長為固定 8 年。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>14 修正訂閱新購入車輛，使用費為負值及到期殘值過低</h3>
+        <p>為解決訂閱新購入車輛於出廠 6 個月內即轉換契約，使用費計算為負值無法正常轉入 SAP，造成訂閱折舊異常之問題。調整 CRS 六個月保護期規則只限第一份契約，並調整 SAP 移轉檔處理邏輯。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="elearning-banner">
+    <div class="elearning-banner-icon">🎓</div>
+    <div class="elearning-banner-body">
+      <div class="elearning-banner-title">中古車 E-learning 中心</div>
+      <div class="elearning-banner-desc">系統操作教學影片整合專區，由中古車營業管課 童仲豪 Josh 製作</div>
+    </div>
+    <a class="elearning-banner-btn" href="elearning.html" target="_blank">前往學習中心 →</a>
+  </div>
+
+  <div class="footer">
+    CARPLUS PREOWNED Project<br>
+    如有問題請洽詢 REED 6006
+    <div><a class="back-link" href="index.html">← 返回更新歷程目錄</a></div>
+  </div>
+</div>
+</body>
+</html>

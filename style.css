@@ -1,12 +1,16 @@
 /* =========================================================
    CARPLUS PREOWNED · 更新歷程系統 共用樣式
-   供 index.html 與每版更新明細頁（YYYYMMDD_preowned.html）共用
+   供 index.html、每版更新明細頁（YYYYMMDD_preowned.html）
+   及 elearning.html 共用
    ========================================================= */
 
 :root{
   --navy:#1A3C5E;
   --navy-light:#4A7FA5;
   --purple:#7B1FA2;
+  --indigo:#4f46e5;
+  --indigo-dark:#4338ca;
+  --indigo-deep:#7c3aed;
   --bg:whitesmoke;
   --panel-bg:#EEF4FA;
   --panel-border:#D8E8F4;
@@ -35,6 +39,13 @@ body{
 
 .wrap{
   max-width:720px;
+  margin:0 auto;
+  background:white;
+  border:1px solid var(--border);
+}
+.wrap-wide{
+  width:60%;
+  min-width:720px;
   margin:0 auto;
   background:white;
   border:1px solid var(--border);
@@ -183,7 +194,268 @@ table.history tr:hover td{
   background:var(--purple);
 }
 
-/* ---- 頁尾（兩種頁面共用） ---- */
+/* ---- 版本頁：E-learning Banner ---- */
+.elearning-banner{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  background:linear-gradient(135deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+  border-radius:0;
+  padding:24px 28px;
+  margin:0;
+}
+.elearning-banner-icon{
+  font-size:36px;
+  flex-shrink:0;
+}
+.elearning-banner-body{
+  flex:1;
+}
+.elearning-banner-title{
+  color:#fff;
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:4px;
+}
+.elearning-banner-desc{
+  color:rgba(255,255,255,0.8);
+  font-size:13px;
+}
+.elearning-banner-btn{
+  display:inline-block;
+  padding:10px 22px;
+  background:#fff;
+  color:var(--indigo) !important;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:700;
+  text-decoration:none;
+  white-space:nowrap;
+  flex-shrink:0;
+  transition:opacity 0.15s;
+}
+.elearning-banner-btn:hover{
+  opacity:0.9;
+}
+
+/* ---- E-learning 頁：頁首 ---- */
+.elearning-header{
+  background:linear-gradient(135deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+  padding:28px 24px 24px;
+}
+.elearning-header .eyebrow{
+  color:rgba(255,255,255,0.75);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+  font-family:var(--font-en);
+}
+.elearning-header h1{
+  color:#fff;
+  font-size:20px;
+  margin:6px 0 0;
+  font-weight:bold;
+}
+.elearning-header .author{
+  font-size:13px;
+  color:rgba(255,255,255,0.8);
+  margin-top:8px;
+}
+
+/* ---- E-learning 頁：影片表格 ---- */
+.ep-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13.5px;
+}
+.ep-table thead tr{
+  background:#F5F8FB;
+}
+.ep-table th{
+  padding:10px 14px;
+  text-align:left;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:0.5px;
+  color:var(--text-label);
+  border-bottom:2px solid var(--border);
+  white-space:nowrap;
+}
+.ep-table td{
+  padding:14px 14px;
+  vertical-align:top;
+  border-bottom:1px solid var(--border-light);
+  line-height:1.6;
+  color:var(--text-muted);
+}
+.ep-table tr:last-child td{
+  border-bottom:none;
+}
+.ep-table tr:hover td{
+  background:var(--row-hover);
+}
+.ep-table .col-ep{
+  width:7%;
+  text-align:center;
+  font-weight:700;
+  color:var(--indigo);
+  font-family:var(--font-en);
+  font-size:12px;
+}
+.ep-table .col-title{
+  width:25%;
+  font-weight:700;
+  color:#111827;
+}
+.ep-table .col-desc{
+  white-space:pre-line;
+}
+.ep-table .col-link{
+  width:110px;
+  text-align:center;
+}
+.ep-btn{
+  display:inline-block;
+  padding:7px 14px;
+  background:var(--indigo);
+  color:#fff !important;
+  border-radius:6px;
+  font-size:12.5px;
+  font-weight:600;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background 0.15s;
+}
+.ep-btn:hover{
+  background:var(--indigo-dark);
+}
+.ep-note{
+  font-size:12px;
+  color:#9ca3af;
+  margin-top:6px;
+  display:block;
+}
+
+/* ---- E-learning 頁：APP 下載列 ---- */
+.app-download-cell{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.app-store-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:600;
+  white-space:nowrap;
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--text);
+  transition:box-shadow 0.15s;
+}
+.app-store-badge:hover{
+  box-shadow:0 2px 8px rgba(0,0,0,0.12);
+}
+.app-store-badge svg{
+  flex-shrink:0;
+}
+.app-store-badge .badge-label{
+  display:flex;
+  flex-direction:column;
+  line-height:1.2;
+}
+.app-store-badge .badge-sub{
+  font-size:10px;
+  font-weight:400;
+  color:var(--text-label);
+}
+.app-store-badge .badge-main{
+  font-size:13px;
+  font-weight:700;
+}
+
+/* ---- E-learning 頁首：右側 APP 下載（標題區塊內） ---- */
+.elearning-header-inner{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+}
+.elearning-header-text{
+  flex:1;
+}
+.elearning-header-apps{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex-shrink:0;
+  align-self:center;
+}
+.app-download-label{
+  font-size:11px;
+  font-weight:700;
+  color:rgba(255,255,255,0.75);
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  margin-bottom:2px;
+}
+.app-store-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:600;
+  white-space:nowrap;
+  border:1px solid rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.15);
+  color:#fff !important;
+  transition:background 0.15s;
+  width:160px;
+  box-sizing:border-box;
+}
+.app-store-badge:hover{
+  background:rgba(255,255,255,0.25);
+}
+.app-store-badge svg{
+  flex-shrink:0;
+}
+.app-store-badge .badge-label{
+  display:flex;
+  flex-direction:column;
+  line-height:1.2;
+}
+.app-store-badge .badge-sub{
+  font-size:10px;
+  font-weight:400;
+  color:rgba(255,255,255,0.75);
+}
+.app-store-badge .badge-main{
+  font-size:13px;
+  font-weight:700;
+  color:#fff;
+}
+
+/* ---- index 頁內嵌 elearning 區塊 ---- */
+.index-elearning{
+  border-top:3px solid var(--indigo);
+  margin-top:0;
+}
+.index-elearning .ep-table td,
+.index-elearning .ep-table th{
+  font-size:13px;
+}
+
+/* ---- 頁尾（所有頁面共用） ---- */
 .footer{
   background:var(--footer-bg);
   border-top:1px solid var(--footer-border);
