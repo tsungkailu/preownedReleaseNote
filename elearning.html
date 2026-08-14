@@ -126,7 +126,6 @@
     @media (max-width: 700px){
       .wrap-wide{ width:100%; min-width:0; border:none; }
       body{ padding:0; background:var(--bg); }
-      .elearning-header-apps,
       .header-admin-controls,
       .admin-bar,
       .ep-table thead,
@@ -137,6 +136,22 @@
       }
       .elearning-header-inner{ display:block; }
       .elearning-header{ padding:24px 20px 22px; }
+
+      .elearning-header-apps{
+        flex-direction:row;
+        flex-wrap:wrap;
+        align-items:stretch;
+        gap:8px;
+        margin-top:18px;
+      }
+      .app-download-label{
+        width:100%;
+      }
+      .elearning-header-apps .app-store-badge{
+        width:auto;
+        flex:1 1 140px;
+        justify-content:center;
+      }
 
       .content{ padding:16px !important; background:var(--bg); }
 
