@@ -3,8 +3,329 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>中古車數位學習中心</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ---- E-learning 頁：管理功能（僅此頁使用） ---- */
+    .admin-bar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 24px;
+      background:#F5F8FB;
+      border-bottom:1px solid var(--border);
+    }
+    .admin-bar-left{
+      font-size:12px;
+      color:var(--text-label);
+    }
+    .admin-bar-left.is-on{
+      color:var(--indigo);
+      font-weight:700;
+    }
+    .admin-bar-right{
+      display:flex;
+      gap:8px;
+    }
+    .admin-btn{
+      display:inline-block;
+      padding:8px 16px;
+      border-radius:6px;
+      font-size:12.5px;
+      font-weight:600;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--text);
+      cursor:pointer;
+      transition:background 0.15s;
+    }
+    .admin-btn:hover{ background:var(--row-hover); }
+    .admin-btn-primary{
+      background:var(--indigo);
+      color:#fff;
+      border-color:var(--indigo);
+    }
+    .admin-btn-primary:hover{ background:var(--indigo-dark); }
+    .admin-btn-outline{
+      background:#fff;
+      color:var(--indigo);
+      border-color:var(--indigo);
+    }
+    .col-title-link{
+      color:inherit;
+      text-decoration:none;
+    }
+    .admin-only{ display:none !important; }
+    body.is-admin .admin-only{ display:inline-block !important; }
+    body.is-admin td.admin-only,
+    body.is-admin th.admin-only{ display:table-cell !important; }
+
+    /* ---- 標題區：管理者登入/登出（放在大標題下方） ---- */
+    .elearning-header{ transition:background 0.2s; }
+    .header-admin-controls{
+      margin-top:14px;
+    }
+    .header-admin-btn{
+      display:inline-block;
+      padding:8px 18px;
+      border-radius:20px;
+      font-size:12.5px;
+      font-weight:700;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.6);
+      background:#fff;
+      color:var(--indigo);
+      transition:opacity 0.15s;
+    }
+    .header-admin-btn:hover{ opacity:0.9; }
+    .header-admin-btn.is-logged-in{
+      background:rgba(0,0,0,0.18);
+      color:#fff;
+      border-color:rgba(255,255,255,0.7);
+    }
+    body.is-admin .elearning-header{
+      background:linear-gradient(135deg, var(--purple) 0%, var(--indigo-deep) 100%);
+    }
+    body.is-admin .header-admin-btn:not(.is-logged-in){
+      color:var(--purple);
+    }
+
+    /* ---- 剛新增/編輯過的列（僅本次管理者工作階段、重整頁面即恢復） ---- */
+    body.is-admin .ep-table tr.row-highlight td{
+      background:#FFF7E0;
+    }
+    body.is-admin .ep-table tr.row-highlight:hover td{
+      background:#FFF0C2;
+    }
+
+    /* ---- Toast 提示 ---- */
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:28px;
+      transform:translateX(-50%) translateY(20px);
+      background:#1f2937;
+      color:#fff;
+      padding:11px 22px;
+      border-radius:8px;
+      font-size:13.5px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.25);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity 0.2s, transform 0.2s;
+      z-index:2000;
+    }
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+    .toast.error{ background:#C0392B; }
+
+    /* ---- 手機版：卡片式列表，只保留主標題、EP、主題（點卡片跳轉影片） ---- */
+    @media (max-width: 700px){
+      .wrap-wide{ width:100%; min-width:0; border:none; }
+      body{ padding:0; background:var(--bg); }
+      .elearning-header-apps,
+      .header-admin-controls,
+      .admin-bar,
+      .ep-table thead,
+      .ep-table .col-desc,
+      .ep-table .col-link,
+      .ep-table .col-action{
+        display:none !important;
+      }
+      .elearning-header-inner{ display:block; }
+      .elearning-header{ padding:24px 20px 22px; }
+
+      .content{ padding:16px !important; background:var(--bg); }
+
+      .ep-table,
+      .ep-table tbody{
+        display:block;
+        width:100%;
+      }
+      .ep-table tr{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        position:relative;
+        background:#fff;
+        border:1px solid var(--border-light);
+        border-radius:14px;
+        padding:16px 40px 16px 16px;
+        margin-bottom:12px;
+        box-shadow:0 1px 3px rgba(16,24,40,0.06);
+        transition:box-shadow 0.15s, transform 0.1s;
+      }
+      .ep-table tr:last-child{ margin-bottom:0; }
+      .ep-table tr:active{
+        transform:scale(0.98);
+        box-shadow:0 1px 2px rgba(16,24,40,0.05);
+      }
+      .ep-table tr::before{
+        content:'';
+        position:absolute;
+        right:18px;
+        top:50%;
+        width:8px;
+        height:8px;
+        border-right:2px solid #C7CFDA;
+        border-bottom:2px solid #C7CFDA;
+        transform:translateY(-50%) rotate(-45deg);
+      }
+      .ep-table td{
+        display:block;
+        padding:0;
+        border:none;
+        vertical-align:middle;
+      }
+      .ep-table .col-ep{
+        flex:0 0 auto;
+        width:auto;
+        min-width:50px;
+        text-align:center;
+        background:var(--panel-bg);
+        color:var(--indigo);
+        font-family:var(--font-en);
+        font-weight:700;
+        font-size:12px;
+        padding:7px 9px;
+        border-radius:8px;
+        white-space:nowrap;
+      }
+      .ep-table .col-title{
+        flex:1 1 auto;
+        min-width:0;
+        font-weight:700;
+        font-size:14.5px;
+        color:#111827;
+        line-height:1.5;
+      }
+      .col-title-link{
+        color:inherit;
+        text-decoration:none;
+      }
+      .col-title-link::after{
+        content:'';
+        position:absolute;
+        inset:0;
+      }
+      .footer{ border-top:none; }
+    }
+
+    .ep-table .col-action{
+      width:120px;
+      text-align:center;
+      white-space:nowrap;
+    }
+    .action-btn{
+      display:inline-block;
+      padding:5px 10px;
+      border-radius:5px;
+      font-size:12px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      margin:2px;
+    }
+    .action-btn-edit{
+      background:var(--panel-bg);
+      color:var(--navy);
+    }
+    .action-btn-edit:hover{ background:var(--panel-border); }
+    .action-btn-delete{
+      background:#FDECEC;
+      color:#C0392B;
+    }
+    .action-btn-delete:hover{ background:#FBD5D5; }
+
+    /* ---- Modal ---- */
+    .modal-overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      padding:16px;
+    }
+    .modal-overlay.open{ display:flex; }
+    .modal-box{
+      background:#fff;
+      width:100%;
+      max-width:480px;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 10px 40px rgba(0,0,0,0.25);
+    }
+    .modal-header{
+      background:linear-gradient(135deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+      color:#fff;
+      padding:16px 20px;
+      font-size:15px;
+      font-weight:700;
+    }
+    .modal-body{
+      padding:20px;
+    }
+    .modal-body p.modal-msg{
+      font-size:14px;
+      line-height:1.7;
+      color:var(--text-muted);
+      margin:0;
+    }
+    .form-row{
+      margin-bottom:14px;
+    }
+    .form-row label{
+      display:block;
+      font-size:12.5px;
+      font-weight:700;
+      color:var(--text-label);
+      margin-bottom:6px;
+    }
+    .form-row input[type=text],
+    .form-row input[type=password],
+    .form-row input[type=url],
+    .form-row textarea{
+      width:100%;
+      padding:9px 11px;
+      border:1px solid var(--border);
+      border-radius:6px;
+      font-size:13.5px;
+      font-family:var(--font-zh);
+      box-sizing:border-box;
+    }
+    .form-row textarea{
+      min-height:90px;
+      resize:vertical;
+      line-height:1.6;
+    }
+    .form-row textarea#editNote{
+      min-height:50px;
+    }
+    .form-hint{
+      font-size:11.5px;
+      color:#9ca3af;
+      margin-top:4px;
+    }
+    .form-error{
+      font-size:12.5px;
+      color:#C0392B;
+      margin-top:8px;
+      min-height:16px;
+    }
+    .modal-footer{
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      padding:14px 20px;
+      background:#FAFAFA;
+      border-top:1px solid var(--border-light);
+    }
+  </style>
 </head>
 
 <body>
@@ -16,6 +337,10 @@
           <div class="eyebrow">E-LEARNING CENTER</div>
           <h1>中古車數位學習中心</h1>
           <div class="author">製作：中古車營業管課 &nbsp;童仲豪 Josh</div>
+          <div class="header-admin-controls">
+            <button type="button" class="header-admin-btn" id="btnAdminLogin">管理者登入</button>
+            <button type="button" class="header-admin-btn is-logged-in admin-only" id="btnAdminLogout">登出管理模式</button>
+          </div>
         </div>
         <div class="elearning-header-apps">
           <div class="app-download-label">下載神馬維運 APP</div>
@@ -45,6 +370,13 @@
       </div>
     </div>
 
+    <div class="admin-bar">
+      <div class="admin-bar-left" id="adminStatus">目前為一般瀏覽模式</div>
+      <div class="admin-bar-right">
+        <button type="button" class="admin-btn admin-only" id="btnAddEpisode">＋ 新增條目</button>
+      </div>
+    </div>
+
     <div class="content" style="padding:0;">
       <table class="ep-table">
         <thead>
@@ -53,87 +385,10 @@
             <th class="col-title">主題</th>
             <th class="col-desc">說明</th>
             <th class="col-link">觀看連結</th>
+            <th class="col-action admin-only">操作</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td class="col-ep">EP7</td>
-            <td class="col-title">訂單輸入「優惠碼」操作指引</td>
-            <td class="col-desc">1.為什麼有優惠碼?
-              2. 20260806後台系統更新優惠碼功能
-              3. 實際系統操作指引
-            </td>
-            <td class="col-link"><a class="ep-btn" href="https://youtu.be/fxddSa9qD8s" target="_blank">點擊觀看</a></td>
-          </tr>
-
-          <tr>
-            <td class="col-ep">EP6-1</td>
-            <td class="col-title">抖音自媒體創號指引</td>
-            <td class="col-desc">1. 如何下載抖音（TikTok）APP
-              2. 如何開設抖音帳號
-              3. 如何透過抖音上架自己的短影音</td>
-            <td class="col-link"><a class="ep-btn" href="https://youtube.com/shorts/8upSG53vjLI?feature=share"
-                target="_blank">點擊觀看</a></td>
-          </tr>
-
-          <tr>
-            <td class="col-ep">EP5</td>
-            <td class="col-title">中古車上架與上架率</td>
-            <td class="col-desc">1. 中古車後台系統上架率指引
-              2. 可上架車輛確認與設定
-              3. 確保庫存車輛確實上架</td>
-            <td class="col-link"><a class="ep-btn" href="https://youtu.be/u-ulsOAhJiA" target="_blank">點擊觀看</a></td>
-          </tr>
-
-           <tr>
-            <td class="col-ep">EP4-3</td>
-            <td class="col-title">神馬出入庫系統操作-盤點作業</td>
-            <td class="col-desc">1. 神馬系統據點車輛盤點作業
-              2. APP 操作流程指引
-              3. 請先下載神馬APP
-              4. CRS系統查核</td>
-            <td class="col-link"><a class="ep-btn" href="https://youtu.be/Z8-AcTxR3-Y" target="_blank">點擊觀看</a></td>
-          </tr>
-
-          <tr>
-            <td class="col-ep">EP4-2</td>
-            <td class="col-title">神馬出入庫系統操作－出售交車</td>
-            <td class="col-desc">1. 神馬系統車輛出售交車操作
-              2. APP 操作流程指引<span class="ep-note">※ 「神馬交車」系統可以使用，請各所交車採用神馬系統進行交車。</span></td>
-            <td class="col-link"><a class="ep-btn" href="https://youtu.be/9BO7wuaZGu4" target="_blank">點擊觀看</a></td>
-          </tr>
-
-          <tr>
-            <td class="col-ep">EP4</td>
-            <td class="col-title">神馬出入庫系統操作</td>
-            <td class="col-desc">1. 神馬系統車輛入庫操作
-              2. APP 操作流程指引<span class="ep-note">※ 神馬系統部分後台串接功能尚未完全上線，此影片主要提供操作學習，以利未來正式啟用時順利銜接。</span></td>
-            <td class="col-link"><a class="ep-btn" href="https://youtu.be/auewAQmX53w" target="_blank">點擊觀看</a></td>
-          </tr>
-
-          <tr>
-            <td class="col-ep">EP3</td>
-            <td class="col-title">一鍵下載車輛照片</td>
-            <td class="col-desc">教你如何一鍵下載車輛全部車圖<span class="ep-note">※ 6/23 更新：套件現已可透過谷歌網站下載安裝</span></td>
-            <td class="col-link"><a class="ep-btn" href="https://youtu.be/Ee8jkF6x3-U" target="_blank">點擊觀看</a></td>
-          </tr>
-
-          <tr>
-            <td class="col-ep">EP2</td>
-            <td class="col-title">快速生成一車一故事及標籤</td>
-            <td class="col-desc">1. GOOGLE Gemini AI 使用介紹
-              2. 運用 AI 快速生成車輛標籤及資料</td>
-            <td class="col-link"><a class="ep-btn" href="https://youtube.com/shorts/3K5WMjgXdIE"
-                target="_blank">點擊觀看</a></td>
-          </tr>
-
-          <tr>
-            <td class="col-ep">EP1</td>
-            <td class="col-title">官網特色標籤及故事 AI 製作教學</td>
-            <td class="col-desc">介紹官網後台操作及特色標籤、一車一故事填寫方法</td>
-            <td class="col-link"><a class="ep-btn" href="https://youtu.be/TmQIpou7hP4" target="_blank">點擊觀看</a></td>
-          </tr>
-
+        <tbody id="episodeTbody">
         </tbody>
       </table>
     </div>
@@ -145,6 +400,466 @@
     </div>
 
   </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- 登入 Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+      <div class="modal-header">管理者登入</div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label for="loginUser">帳號</label>
+          <input type="text" id="loginUser" autocomplete="off">
+        </div>
+        <div class="form-row">
+          <label for="loginPass">密碼</label>
+          <input type="password" id="loginPass" autocomplete="off">
+        </div>
+        <div class="form-error" id="loginError"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-btn" id="loginCancelBtn">取消</button>
+        <button type="button" class="admin-btn admin-btn-primary" id="loginSubmitBtn">登入</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新增/編輯 Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-box">
+      <div class="modal-header" id="editModalTitle">編輯條目</div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label for="editEp">EP</label>
+          <input type="text" id="editEp">
+        </div>
+        <div class="form-row">
+          <label for="editTitle">主題</label>
+          <input type="text" id="editTitle">
+        </div>
+        <div class="form-row">
+          <label for="editDesc">說明</label>
+          <textarea id="editDesc" placeholder="可用 Enter 換行"></textarea>
+          <div class="form-hint">換行會保留在儲存後的內容中</div>
+        </div>
+        <div class="form-row">
+          <label for="editNote">提醒／備註（非必填）</label>
+          <textarea id="editNote" placeholder="會以醒目樣式獨立顯示，例如系統限制或注意事項"></textarea>
+        </div>
+        <div class="form-row">
+          <label for="editLink">觀看連結</label>
+          <input type="url" id="editLink" placeholder="https://...">
+        </div>
+        <div class="form-error" id="editError"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-btn" id="editCancelBtn">取消</button>
+        <button type="button" class="admin-btn admin-btn-primary" id="editSaveBtn">儲存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 刪除確認 Modal -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+      <div class="modal-header">刪除確認</div>
+      <div class="modal-body">
+        <p class="modal-msg" id="deleteMsg"></p>
+        <div class="form-error" id="deleteError"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-btn" id="deleteCancelBtn">取消</button>
+        <button type="button" class="admin-btn action-btn-delete" style="padding:8px 16px;" id="deleteConfirmBtn">確定刪除</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var ADMIN_USER = 'CARPLUS';
+      var ADMIN_PASS = '12208883';
+      var STORAGE_KEY = 'elearning_episodes_v1';
+      // 部署 Worker 後，把下面這行換成你的 Worker 網址（結尾為 /api/episodes）
+      var WORKER_API_URL = 'https://preowned-elearning-api.tsungkailu.workers.dev/api/episodes';
+
+      var defaultEpisodes = [
+        {
+          ep: 'EP7',
+          title: '訂單輸入「優惠碼」操作指引',
+          desc: '1.為什麼有優惠碼?\n2. 20260806後台系統更新優惠碼功能\n3. 實際系統操作指引',
+          link: 'https://youtu.be/fxddSa9qD8s'
+        },
+        {
+          ep: 'EP6-1',
+          title: '抖音自媒體創號指引',
+          desc: '1. 如何下載抖音（TikTok）APP\n2. 如何開設抖音帳號\n3. 如何透過抖音上架自己的短影音',
+          link: 'https://youtube.com/shorts/8upSG53vjLI?feature=share'
+        },
+        {
+          ep: 'EP5',
+          title: '中古車上架與上架率',
+          desc: '1. 中古車後台系統上架率指引\n2. 可上架車輛確認與設定\n3. 確保庫存車輛確實上架',
+          link: 'https://youtu.be/u-ulsOAhJiA'
+        },
+        {
+          ep: 'EP4-3',
+          title: '神馬出入庫系統操作-盤點作業',
+          desc: '1. 神馬系統據點車輛盤點作業\n2. APP 操作流程指引\n3. 請先下載神馬APP\n4. CRS系統查核',
+          link: 'https://youtu.be/Z8-AcTxR3-Y'
+        },
+        {
+          ep: 'EP4-2',
+          title: '神馬出入庫系統操作－出售交車',
+          desc: '1. 神馬系統車輛出售交車操作\n2. APP 操作流程指引',
+          note: '「神馬交車」系統可以使用，請各所交車採用神馬系統進行交車。',
+          link: 'https://youtu.be/9BO7wuaZGu4'
+        },
+        {
+          ep: 'EP4',
+          title: '神馬出入庫系統操作',
+          desc: '1. 神馬系統車輛入庫操作\n2. APP 操作流程指引',
+          note: '神馬系統部分後台串接功能尚未完全上線，此影片主要提供操作學習，以利未來正式啟用時順利銜接。',
+          link: 'https://youtu.be/auewAQmX53w'
+        },
+        {
+          ep: 'EP3',
+          title: '一鍵下載車輛照片',
+          desc: '教你如何一鍵下載車輛全部車圖',
+          note: '6/23 更新：套件現已可透過谷歌網站下載安裝',
+          link: 'https://youtu.be/Ee8jkF6x3-U'
+        },
+        {
+          ep: 'EP2',
+          title: '快速生成一車一故事及標籤',
+          desc: '1. GOOGLE Gemini AI 使用介紹\n2. 運用 AI 快速生成車輛標籤及資料',
+          link: 'https://youtube.com/shorts/3K5WMjgXdIE'
+        },
+        {
+          ep: 'EP1',
+          title: '官網特色標籤及故事 AI 製作教學',
+          desc: '介紹官網後台操作及特色標籤、一車一故事填寫方法',
+          link: 'https://youtu.be/TmQIpou7hP4'
+        }
+      ];
+
+      var episodes = loadCachedEpisodes();
+      var isAdmin = sessionStorage.getItem('elearning_admin') === '1';
+      var adminUser = sessionStorage.getItem('elearning_admin_user') || '';
+      var adminPass = sessionStorage.getItem('elearning_admin_pass') || '';
+      var editIndex = -1; // -1 = 新增模式
+      var deleteIndex = -1;
+      var highlightFlags = episodes.map(function () { return false; });
+      var toastTimer = null;
+
+      function loadCachedEpisodes() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) return JSON.parse(raw);
+        } catch (e) { /* ignore corrupt storage */ }
+        return defaultEpisodes.slice();
+      }
+
+      function cacheEpisodes() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(episodes));
+      }
+
+      function setSyncStatus(text, isError) {
+        var el = document.getElementById('adminStatus');
+        if (isAdmin) return; // 管理模式下 updateAdminUI 會覆蓋文字，避免衝突
+        el.textContent = text;
+        el.classList.toggle('is-on', false);
+        el.style.color = isError ? '#C0392B' : '';
+      }
+
+      function showToast(text, isError) {
+        var el = document.getElementById('toast');
+        el.textContent = text;
+        el.classList.toggle('error', !!isError);
+        el.classList.add('show');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          el.classList.remove('show');
+        }, 2600);
+      }
+
+      function fetchEpisodesFromServer() {
+        return fetch(WORKER_API_URL, { method: 'GET' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            episodes = data.episodes;
+            highlightFlags = episodes.map(function () { return false; });
+            cacheEpisodes();
+            render();
+            setSyncStatus('目前為一般瀏覽模式（資料已同步 GitHub）', false);
+          })
+          .catch(function (err) {
+            render();
+            setSyncStatus('無法連線最新資料，目前顯示本機快取內容（' + err.message + '）', true);
+          });
+      }
+
+      function postEpisodesToServer(nextEpisodes) {
+        return fetch(WORKER_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user: adminUser, pass: adminPass, episodes: nextEpisodes })
+        }).then(function (res) {
+          return res.json().then(function (data) {
+            if (!res.ok) {
+              var err = new Error(data && data.error ? data.error : ('HTTP ' + res.status));
+              throw err;
+            }
+            return data;
+          });
+        });
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function descToHtml(desc) {
+        var lines = String(desc || '').split('\n');
+        return lines.map(function (line) {
+          return escapeHtml(line);
+        }).join('<br>');
+      }
+
+      function noteToHtml(note) {
+        var trimmed = String(note || '').trim();
+        if (!trimmed) return '';
+        return '<span class="ep-note">※ ' + escapeHtml(trimmed) + '</span>';
+      }
+
+      function maxEpNumber() {
+        var max = 0;
+        episodes.forEach(function (item) {
+          var m = /^EP(\d+)/i.exec(item.ep || '');
+          if (m) {
+            var n = parseInt(m[1], 10);
+            if (n > max) max = n;
+          }
+        });
+        return max;
+      }
+
+      function render() {
+        var tbody = document.getElementById('episodeTbody');
+        tbody.innerHTML = '';
+        episodes.forEach(function (item, idx) {
+          var tr = document.createElement('tr');
+          if (highlightFlags[idx]) tr.className = 'row-highlight';
+          tr.innerHTML =
+            '<td class="col-ep">' + escapeHtml(item.ep) + '</td>' +
+            '<td class="col-title"><a class="col-title-link" href="' + escapeHtml(item.link) + '" target="_blank">' + escapeHtml(item.title) + '</a></td>' +
+            '<td class="col-desc">' + descToHtml(item.desc) + (item.note ? '<br>' + noteToHtml(item.note) : '') + '</td>' +
+            '<td class="col-link"><a class="ep-btn" href="' + escapeHtml(item.link) + '" target="_blank">點擊觀看</a></td>' +
+            '<td class="col-action admin-only">' +
+              '<button type="button" class="action-btn action-btn-edit" data-action="edit" data-index="' + idx + '">編輯</button>' +
+              '<button type="button" class="action-btn action-btn-delete" data-action="delete" data-index="' + idx + '">刪除</button>' +
+            '</td>';
+          tbody.appendChild(tr);
+        });
+      }
+
+      function updateAdminUI() {
+        document.body.classList.toggle('is-admin', isAdmin);
+        var statusEl = document.getElementById('adminStatus');
+        statusEl.textContent = isAdmin ? '目前為管理者模式，可編輯 / 新增 / 刪除條目' : '目前為一般瀏覽模式';
+        statusEl.classList.toggle('is-on', isAdmin);
+        statusEl.style.color = '';
+        document.getElementById('btnAdminLogin').style.display = isAdmin ? 'none' : 'inline-block';
+      }
+
+      // ---- Modal 工具 ----
+      function openModal(id) { document.getElementById(id).classList.add('open'); }
+      function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+      // ---- 登入 ----
+      document.getElementById('btnAdminLogin').addEventListener('click', function () {
+        document.getElementById('loginUser').value = '';
+        document.getElementById('loginPass').value = '';
+        document.getElementById('loginError').textContent = '';
+        openModal('loginModal');
+      });
+      document.getElementById('loginCancelBtn').addEventListener('click', function () {
+        closeModal('loginModal');
+      });
+      document.getElementById('loginSubmitBtn').addEventListener('click', function () {
+        var user = document.getElementById('loginUser').value.trim();
+        var pass = document.getElementById('loginPass').value;
+        if (user === ADMIN_USER && pass === ADMIN_PASS) {
+          isAdmin = true;
+          adminUser = user;
+          adminPass = pass;
+          sessionStorage.setItem('elearning_admin', '1');
+          sessionStorage.setItem('elearning_admin_user', user);
+          sessionStorage.setItem('elearning_admin_pass', pass);
+          updateAdminUI();
+          closeModal('loginModal');
+        } else {
+          document.getElementById('loginError').textContent = '帳號或密碼錯誤';
+        }
+      });
+      document.getElementById('btnAdminLogout').addEventListener('click', function () {
+        isAdmin = false;
+        adminUser = '';
+        adminPass = '';
+        sessionStorage.removeItem('elearning_admin');
+        sessionStorage.removeItem('elearning_admin_user');
+        sessionStorage.removeItem('elearning_admin_pass');
+        updateAdminUI();
+      });
+
+      // ---- 新增/編輯 ----
+      document.getElementById('btnAddEpisode').addEventListener('click', function () {
+        editIndex = -1;
+        document.getElementById('editModalTitle').textContent = '新增條目';
+        document.getElementById('editEp').value = 'EP' + (maxEpNumber() + 1);
+        document.getElementById('editTitle').value = '';
+        document.getElementById('editDesc').value = '';
+        document.getElementById('editNote').value = '';
+        document.getElementById('editLink').value = '';
+        document.getElementById('editError').textContent = '';
+        openModal('editModal');
+      });
+
+      document.getElementById('episodeTbody').addEventListener('click', function (e) {
+        var btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        var idx = parseInt(btn.getAttribute('data-index'), 10);
+        var action = btn.getAttribute('data-action');
+        if (action === 'edit') {
+          editIndex = idx;
+          var item = episodes[idx];
+          document.getElementById('editModalTitle').textContent = '編輯條目';
+          document.getElementById('editEp').value = item.ep;
+          document.getElementById('editTitle').value = item.title;
+          document.getElementById('editDesc').value = item.desc;
+          document.getElementById('editNote').value = item.note || '';
+          document.getElementById('editLink').value = item.link;
+          document.getElementById('editError').textContent = '';
+          openModal('editModal');
+        } else if (action === 'delete') {
+          deleteIndex = idx;
+          var target = episodes[idx];
+          document.getElementById('deleteMsg').textContent =
+            '確定要刪除「' + target.ep + '：' + target.title + '」嗎？此動作無法復原。';
+          openModal('deleteModal');
+        }
+      });
+
+      document.getElementById('editCancelBtn').addEventListener('click', function () {
+        closeModal('editModal');
+      });
+
+      document.getElementById('editSaveBtn').addEventListener('click', function () {
+        var ep = document.getElementById('editEp').value.trim();
+        var title = document.getElementById('editTitle').value.trim();
+        var desc = document.getElementById('editDesc').value.trim();
+        var note = document.getElementById('editNote').value.trim();
+        var link = document.getElementById('editLink').value.trim();
+
+        if (!ep || !title || !desc || !link) {
+          document.getElementById('editError').textContent = 'EP、主題、說明、觀看連結為必填欄位（提醒／備註非必填）';
+          return;
+        }
+
+        var record = { ep: ep, title: title, desc: desc, note: note, link: link };
+        var nextEpisodes = episodes.slice();
+        var isAdd = editIndex === -1;
+        var highlightIndex = isAdd ? 0 : editIndex;
+        if (isAdd) {
+          nextEpisodes.unshift(record);
+        } else {
+          nextEpisodes[editIndex] = record;
+        }
+
+        var saveBtn = document.getElementById('editSaveBtn');
+        saveBtn.disabled = true;
+        saveBtn.textContent = '儲存中...';
+        document.getElementById('editError').textContent = '';
+
+        postEpisodesToServer(nextEpisodes)
+          .then(function (data) {
+            episodes = data.episodes;
+            if (isAdd) {
+              highlightFlags.unshift(true);
+            } else {
+              highlightFlags[highlightIndex] = true;
+            }
+            cacheEpisodes();
+            render();
+            closeModal('editModal');
+            showToast(isAdd ? '已新增條目 ' + record.ep : '已更新條目 ' + record.ep, false);
+          })
+          .catch(function (err) {
+            document.getElementById('editError').textContent = '儲存失敗，請確認 Worker 網址與連線狀態（' + err.message + '）';
+          })
+          .finally(function () {
+            saveBtn.disabled = false;
+            saveBtn.textContent = '儲存';
+          });
+      });
+
+      document.getElementById('deleteCancelBtn').addEventListener('click', function () {
+        closeModal('deleteModal');
+      });
+      document.getElementById('deleteConfirmBtn').addEventListener('click', function () {
+        if (deleteIndex > -1) {
+          var removedEp = episodes[deleteIndex].ep;
+          var nextEpisodes = episodes.slice();
+          nextEpisodes.splice(deleteIndex, 1);
+          var removedAt = deleteIndex;
+
+          var confirmBtn = document.getElementById('deleteConfirmBtn');
+          confirmBtn.disabled = true;
+          confirmBtn.textContent = '刪除中...';
+          document.getElementById('deleteError').textContent = '';
+
+          postEpisodesToServer(nextEpisodes)
+            .then(function (data) {
+              episodes = data.episodes;
+              highlightFlags.splice(removedAt, 1);
+              cacheEpisodes();
+              render();
+              deleteIndex = -1;
+              closeModal('deleteModal');
+              showToast('已刪除條目 ' + removedEp, false);
+            })
+            .catch(function (err) {
+              document.getElementById('deleteError').textContent = '刪除失敗，請確認 Worker 網址與連線狀態（' + err.message + '）';
+            })
+            .finally(function () {
+              confirmBtn.disabled = false;
+              confirmBtn.textContent = '確定刪除';
+            });
+          return;
+        }
+        closeModal('deleteModal');
+      });
+
+      // 點擊遮罩關閉：登入/刪除確認可點外部關閉；新增/編輯內容較多，避免誤觸遺失輸入，僅能按取消或成功送出才會關閉
+      ['loginModal', 'deleteModal'].forEach(function (id) {
+        document.getElementById(id).addEventListener('click', function (e) {
+          if (e.target === e.currentTarget) closeModal(id);
+        });
+      });
+
+      render();
+      updateAdminUI();
+      fetchEpisodesFromServer();
+    })();
+  </script>
+
 </body>
 
 </html>

@@ -297,12 +297,13 @@ table.history tr:hover td{
   background:var(--row-hover);
 }
 .ep-table .col-ep{
-  width:7%;
+  width:64px;
   text-align:center;
   font-weight:700;
   color:var(--indigo);
   font-family:var(--font-en);
   font-size:12px;
+  white-space:nowrap;
 }
 .ep-table .col-title{
   width:25%;

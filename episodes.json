@@ -1,0 +1,65 @@
+[
+  {
+    "ep": "EP7",
+    "title": "訂單輸入「優惠碼」操作指引",
+    "desc": "1.為什麼有優惠碼?\n2. 20260806後台系統更新優惠碼功能\n3. 實際系統操作指引",
+    "note": "",
+    "link": "https://youtu.be/fxddSa9qD8s"
+  },
+  {
+    "ep": "EP6-1",
+    "title": "抖音自媒體創號指引",
+    "desc": "1. 如何下載抖音（TikTok）APP\n2. 如何開設抖音帳號\n3. 如何透過抖音上架自己的短影音",
+    "note": "",
+    "link": "https://youtube.com/shorts/8upSG53vjLI?feature=share"
+  },
+  {
+    "ep": "EP5",
+    "title": "中古車上架與上架率",
+    "desc": "1. 中古車後台系統上架率指引\n2. 可上架車輛確認與設定\n3. 確保庫存車輛確實上架",
+    "note": "",
+    "link": "https://youtu.be/u-ulsOAhJiA"
+  },
+  {
+    "ep": "EP4-3",
+    "title": "神馬出入庫系統操作-盤點作業",
+    "desc": "1. 神馬系統據點車輛盤點作業\n2. APP 操作流程指引\n3. 請先下載神馬APP\n4. CRS系統查核",
+    "note": "",
+    "link": "https://youtu.be/Z8-AcTxR3-Y"
+  },
+  {
+    "ep": "EP4-2",
+    "title": "神馬出入庫系統操作－出售交車",
+    "desc": "1. 神馬系統車輛出售交車操作\n2. APP 操作流程指引",
+    "note": "「神馬交車」系統可以使用，請各所交車採用神馬系統進行交車。",
+    "link": "https://youtu.be/9BO7wuaZGu4"
+  },
+  {
+    "ep": "EP4",
+    "title": "神馬出入庫系統操作",
+    "desc": "1. 神馬系統車輛入庫操作\n2. APP 操作流程指引",
+    "note": "神馬系統部分後台串接功能尚未完全上線，此影片主要提供操作學習，以利未來正式啟用時順利銜接。",
+    "link": "https://youtu.be/auewAQmX53w"
+  },
+  {
+    "ep": "EP3",
+    "title": "一鍵下載車輛照片",
+    "desc": "教你如何一鍵下載車輛全部車圖",
+    "note": "6/23 更新：套件現已可透過谷歌網站下載安裝",
+    "link": "https://youtu.be/Ee8jkF6x3-U"
+  },
+  {
+    "ep": "EP2",
+    "title": "快速生成一車一故事及標籤",
+    "desc": "1. GOOGLE Gemini AI 使用介紹\n2. 運用 AI 快速生成車輛標籤及資料",
+    "note": "",
+    "link": "https://youtube.com/shorts/3K5WMjgXdIE"
+  },
+  {
+    "ep": "EP1",
+    "title": "官網特色標籤及故事 AI 製作教學",
+    "desc": "介紹官網後台操作及特色標籤、一車一故事填寫方法",
+    "note": "",
+    "link": "https://youtu.be/TmQIpou7hP4"
+  }
+]
