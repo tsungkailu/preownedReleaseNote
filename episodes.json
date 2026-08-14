@@ -1,5 +1,12 @@
 [
   {
+    "ep": "EP8",
+    "title": "測試",
+    "desc": "111\n222\n333",
+    "note": "樣式",
+    "link": "https://www.youtube.com/watch?v=u-ulsOAhJiA&feature=youtu.be"
+  },
+  {
     "ep": "EP7",
     "title": "訂單輸入「優惠碼」操作指引",
     "desc": "1.為什麼有優惠碼?\n2. 20260806後台系統更新優惠碼功能\n3. 實際系統操作指引",
