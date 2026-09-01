@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<title>中古車上版通知 PRE1.145</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">RELEASE NOTICE</div>
+    <h1>中古車上版通知</h1>
+    <div class="version-line">PRE1.145 &nbsp;|&nbsp; 2026-09-02</div>
+  </div>
+
+  <div class="subbar">本次版本共包含 <b>9</b> 項更新，涵蓋新功能開發、流程自動化及介面修正。</div>
+
+  <div class="content">
+
+    <div class="section-title">新功能</div>
+
+    <div class="card-list">
+
+      <div class="update-card">
+        <h3>01　排程自動發送交車推薦碼與生日碼</h3>
+        <p>交車完成的自然人保有客戶，於交車次月 15 日 20:00 自動產生推薦碼並發送簡訊；生日前 30 天內自動發送生日碼；每月 5 日自動 Email 優惠碼報表，全程免人工作業，不再有遺漏風險。</p>
+      </div>
+
+      <div class="update-card">
+        <h3>02　中古車上架車輛自動同步 Meta 廣告清單</h3>
+        <p>車輛下架時，Meta 廣告目錄過去需手動維護，容易出現失效連結。調整後每日自動將上架車輛清單同步至廣告目錄，確保廣告與官網上架狀態一致，無須人工介入。</p>
+        <p style="font-size:12px;color:#888;margin-top:8px;">※ 僅限中古車營業課以公司 Email 登入使用</p>
+        <div class="card-actions">
+          <a class="card-link purple" href="https://docs.google.com/spreadsheets/d/12HC0ZYuDpCwaVy_1HtHpIf7ZyafAOYZNvldKsgQ8EXU/edit?usp=drive_link" target="_blank">上架清單</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>03　已交車訂單支援申請退購</h3>
+        <p>過去交車後若要退購，系統不允許操作。現在交車 7 日鑑賞期內，業務可直接在後台發起退購申請並送簽核；簽核若被駁回，訂單狀態自動還原，不需手動調整。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/home" target="_blank">出售申請</a>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <h3>04　CRS 實車出入庫防呆機制</h3>
+        <p>出入庫操作時，若出入庫類型與理由不符合規範（例如入庫卻填寫出售交車），系統將自動攔截並回傳錯誤，避免錯誤資料寫入。已除帳車輛除出售交車外，亦不可再建立出入庫紀錄。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://lrental.car-plus.com.tw/crs/stockOperation" target="_blank">CRS 實車出入庫</a>
+          <a class="card-link purple" href="https://claude.ai/code/artifact/4777625f-3dfa-4e4b-bf20-81c9c5798bc3" target="_blank">串接舊系統邏輯</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-title with-divider">功能修正與優化</div>
+
+    <div class="card-list">
+
+      <div class="update-card alt">
+        <h3>05　調整出售核准後牌照狀態更新時機</h3>
+        <p>出售核准當天若即時開立發票，SAP 有時因時序問題漏掉站所契約的寫入。調整後，牌照狀態改為次日排程批次更新，確保 SAP 資料完整；退購時仍維持即時更新。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://auto-cms.car-plus.com.tw/home" target="_blank">出售申請</a>
+        </div>
+      </div>
+
+      <div class="update-card alt">
+        <h3>06　解除封存時保留「管制」調度狀態</h3>
+        <p>車輛解除封存後，若原調度狀態為「管制」，系統原本會自動改為「開放」，打亂管制流程。調整後，解除封存只解除封存本身，調度狀態不受影響。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>07　CRS 實車出入庫串接舊調度系統優化</h3>
+        <p>串接舊調度系統時新增出入庫備註說明，方便辨識每筆紀錄的來源；修正調撥出入庫時間記錄時區不正確的問題；並新增刪除錯誤出入庫紀錄的功能，方便後續資料修正。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://lrental.car-plus.com.tw/crs/stockOperation" target="_blank">CRS 實車出入庫</a>
+        </div>
+      </div>
+
+      <div class="update-card alt">
+        <h3>08　當天換號又換約導致車號未轉入 SAP 修正</h3>
+        <p>車輛同一天換號又換約時，因系統處理順序問題，新車號無法正確轉入 SAP，造成帳面殘值查詢異常。此次修正處理時序與殘值計算邏輯，確保資料正確寫入。</p>
+      </div>
+
+      <div class="update-card alt">
+        <h3>09　新增或更新停放點時，各系統資料同步修正</h3>
+        <p>新增或修改實車出入庫停放點後，相關系統的地點資料未同步更新，造成各系統資料不一致。修正後，停放點異動時會正確同步至所有相關系統。</p>
+        <div class="card-actions">
+          <a class="card-link" href="https://lrental.car-plus.com.tw/crs/realLocation" target="_blank">CRS 停放點管理</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    CARPLUS PREOWNED Project<br>
+    如有問題請洽詢 REED 6006
+    <div><a class="back-link" href="index.html">← 返回更新歷程目錄</a></div>
+  </div>
+
+</div>
+
+</body>
+</html>
