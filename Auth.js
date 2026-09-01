@@ -1,3 +1,4 @@
+
 /* ============================================================
    CARPLUS PREOWNED · 頁面存取驗證
    ============================================================ */
@@ -64,12 +65,7 @@
         border-radius: 2px;
       }
       #auth-body input:focus { border-color: #1A3C5E; }
-      #auth-hint {
-        font-size: 11.5px;
-        color: #888;
-        margin-top: 5px;
-      }
-      #auth-error {
+#auth-error {
         display: none;
         font-size: 12.5px;
         color: #c0392b;
@@ -96,8 +92,7 @@
       </div>
       <div id="auth-body">
         <label for="auth-id">工號</label>
-        <input id="auth-id" type="text" placeholder="例：SJ1234、QT5678、K9012" autocomplete="username" />
-        <div id="auth-hint">格式：SJ／QT／K 開頭＋四碼數字</div>
+        <input id="auth-id" type="text" placeholder="" autocomplete="username" />
         <label for="auth-pw">密碼</label>
         <input id="auth-pw" type="password" autocomplete="current-password" />
         <div id="auth-error">工號格式錯誤或密碼不正確，請重新輸入。</div>
