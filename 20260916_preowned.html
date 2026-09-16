@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<title>中古車上版通知 PRE1.146</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">RELEASE NOTICE</div>
+    <h1>中古車上版通知</h1>
+    <div class="version-line">PRE1.146 &nbsp;|&nbsp; 2026-09-16</div>
+  </div>
+
+  <div class="subbar">本次版本共包含 <b>14</b> 項更新，涵蓋流程自動化、介面修正及通知信優化。</div>
+
+  <div class="content">
+
+    <div class="section-title">功能修正與優化</div>
+
+    <!-- 中古車 -->
+    <div class="section-title with-divider" style="font-size:0.85rem;color:#888;margin-top:0;">中古車</div>
+    <div class="card-list">
+
+    <div class="update-card alt">
+      <h3>01　中古車自動撥車 (營業課專用)</h3>
+      <p>中古車營業課人員可於車籍管理頁面發動CRS自動撥車，僅限將車輛由中古車撥入調度。完成後，車輛將自中古車系統移除。</p>
+      <div class="card-actions">
+        <a class="card-link" href="https://auto-cms.car-plus.com.tw/cars" target="_blank">車籍管理</a>
+      </div>
+    </div>
+
+    <div class="update-card alt">
+      <h3>02　退購核准通知信件，排除出售駁回案件</h3>
+      <p>退購核准通知信件，不再寄送「出售駁回」案件，僅寄送「核准後再退購」之案件。完成退購核准後，若車輛尚未於CRS出售，則不再通知CRS修改牌照狀態。</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>03　未開立發票通知信，格式修正</h3>
+      <p>未開立發票提醒天數計算錯誤，修正為「出售核准後滿10天才提醒」</p>
+    </div>
+
+      <div class="update-card alt">
+      <h3>04　修正車型明細過長，無法儲存問題</h3>
+      <p>修正因CRS車型明細資料過長，造成中古車系統無法同步車型資料及儲存車籍問題</p>
+        <div class="card-actions">
+        <a class="card-link" href="https://auto-cms.car-plus.com.tw/cars" target="_blank">車籍管理</a>
+      </div>
+    </div>
+
+    <div class="update-card alt">
+      <h3>05　Meta 廣告車輛清單，新增同步車種</h3>
+      <p>Meta 廣告清單同步時，車輛 model 欄位由固定寫死的「多元車」改為上傳實際車種名稱，讓廣告資料更精準。</p>
+      <div class="card-actions">
+        <a class="card-link purple" href="https://docs.google.com/spreadsheets/d/12HC0ZYuDpCwaVy_1HtHpIf7ZyafAOYZNvldKsgQ8EXU/edit?usp=drivesdk&search_id=ee11fb8b-234f-4d65-95aa-aeb103485724" target="_blank">META 廣告清單</a>
+      </div>
+    </div>
+
+    </div>
+
+    <!-- 實車出入庫 -->
+    <div class="section-title with-divider" style="font-size:0.85rem;color:#888;">實車出入庫</div>
+    <div class="card-list">
+
+    <div class="update-card alt">
+      <h3>06　神馬實車出入庫，依情境區分出庫／入庫</h3>
+      <p>出入庫理由選單依照情境（出庫／入庫）篩選對應理由：例如：出庫將對應「租賃交車」，而不會出現「租賃還車」。調整照片必填規則：非「出售交車」「車況更新」情境僅需拍攝四角及儀表板。</p>
+    </div>
+
+      <div class="update-card alt">
+      <h3>07　神馬實車出入庫，減少實車調度拍攝照片數量</h3>
+      <p>出入庫理由為實車調度、租賃交車、租賃還車、維修保養時，實車出入庫縮減為僅需拍攝車輛四角照及儀表板。</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>08　神馬實車出入庫，新增停放點搜尋介面</h3>
+      <p>為解決實車停放點過多不易選擇之問題，新增停放點搜尋介面，可用營業單位、縣市及關鍵字篩選，快速選擇停放點。</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>09　神馬實車出入庫：縮減證件配件清單，並開放自行輸入額外配件</h3>
+      <p>證件／配件清單由27項縮減為8項，調整為可直接盤點，並開放欄位，輸入額外配件或證件資訊</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>10　訂閱出還車後，若停放點為中古車，將同步中古車盤點清單</h3>
+      <p>訂閱出還車後，中古車營業所不需再次操作神馬出入庫，盤點清單即會自動同步。若訂閱訂單為續約不還車，則不會產生入庫歷程</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>11　車牌更換或訂閱出還車後，實車出入庫仍可沿用前次車輛照片</h3>
+      <p>車輛入庫期間更換車牌，再次出庫時，不論用新、舊車牌都可以查詢到車輛，並沿用照片。若期間操作訂閱出還車，也仍然可以沿用車輛照片。</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>12　實車待入庫排程提醒信件，只保留調撥待入庫車輛清單</h3>
+      <p>實車待入庫提醒信件，只列出出入庫理由為「實車調度」且預定入庫地點屬中古車營業所的出庫資料，作為迎接車輛入庫之提醒清單</p>
+    </div>
+
+
+
+    </div>
+
+    <!-- CRS -->
+    <div class="section-title with-divider" style="font-size:0.85rem;color:#888;">CRS</div>
+    <div class="card-list">
+
+    <div class="update-card alt">
+      <h3>13　長照福祉車採購配件保險</h3>
+      <p>營業用車採購，支援長照車配件投保流程：保險預設方案依「BU＋部門」匹配，配件加保總金額80萬防呆上限，新增保險備註欄位。</p>
+      <div class="card-actions">
+        <a class="card-link" href="https://lrental.car-plus.com.tw/businessPurchase/PurchaseApply" target="_blank">營業用車採購</a>
+      </div>
+    </div>
+
+    <div class="update-card alt">
+      <h3>14　CRS 實車出入庫查詢列表，增加顯示操作者姓名、預定入庫地點、營業單位憑證</h3>
+      <p>出入庫查詢列表及歷程，新增顯示操作者姓名、營業單位、憑證序號(如訂單編號)、預定入庫地點；建立／更新出入庫時可傳入營業單位自定義站點。</p>
+      <div class="card-actions">
+        <a class="card-link" href="https://lrental.car-plus.com.tw/crs/stockOperation" target="_blank">實車出入庫列表</a>
+      </div>
+    </div>
+
+    <div class="update-card alt">
+      <h3>15　CRS 實車出入庫防呆及錯誤通報強化</h3>
+      <p>已除帳車輛不允許建立出入庫（出售交車除外）；專案車不串接舊調度系統；出入庫理由名稱改從serviceCode取得；加入錯誤通報機制。</p>
+    </div>
+
+    <div class="update-card alt">
+      <h3>16　訂閱車輛同一天，換車號又換約，導致無法轉入SAP議題修正</h3>
+      <p>修正訂閱舊車同日換號又換約，導致到期殘值計算錯誤問題；同時，將SAP預留殘值及CRS到期殘值設定最小值為0，避免出現負值異常。</p>
+    </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    CARPLUS PREOWNED Project<br>
+    如有問題請洽詢 REED 6006
+    <div><a class="back-link" href="index.html">← 返回更新歷程目錄</a></div>
+  </div>
+
+</div>
+
+</body>
+</html>
